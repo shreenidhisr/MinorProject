@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{%block title%} 
+<title>LOGIN</title>
+{%endblock%}
+
+{%block body%}
+<h1>{{msg}}</h1>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div id="card-347238">
+				<div class="card">
+					<div class="card-header">
+						 <a class=" card-link btn btn-warning" data-toggle="collapse" data-parent="#card-347238" href="#card-element-587356">Sign in</a>
+					</div>
+					<div id="card-element-587356" class="collapse show">
+						<div class="card-body">
+							<form role="form" action="/signin" method="POST">
+                                <div class="form-group">
+                                     
+                                    <label for="exampleInputEmail1">
+                                        Email address
+                                    </label>
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" />
+                                </div>
+                                <div class="form-group">
+                                     
+                                    <label for="exampleInputPassword1">
+                                        Password
+                                    </label>
+                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" />
+                                </div>
+                                
+                
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </form>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header">
+						 <a class="collapsed card-link btn btn-info" data-toggle="collapse" data-parent="#card-347238" href="#card-element-390367">Login</a>
+					</div>
+					<div id="card-element-390367" class="collapse">
+						<div class="card-body">
+							<form role="form" action="/login" method="POST">
+                                <div class="form-group">
+                                     
+                                    <label for="exampleInputEmail1">
+                                        Email address
+                                    </label>
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" />
+                                </div>
+                                <div class="form-group">
+                                     
+                                    <label for="exampleInputPassword1">
+                                        Password
+                                    </label>
+                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" />
+                                </div>
+                                
+                                 
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+{%endblock%}

@@ -1,0 +1,97 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='/css/styles.css')}}"
+    />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {%block head%}
+    <title>Title</title>
+
+    {%endblock%}
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+
+    <div class="row mb-3">
+      <div class="col-md-12 position-relative">
+        <ul class="nav bg-light d-flex flex-row justify-content-between">
+          <li class="nav-item p-2">
+            <a
+              class="nav-link ms-3 me-3 active btn btn-primary"
+              href="/disease_predict"
+              >Disease predictor</a
+            >
+          </li>
+          <li class="nav-item p-2">
+            <a class="nav-link ms-3 me-3 btn btn-primary" href="/symptoms"
+              >List of symptoms</a
+            >
+          </li>
+          <li class="nav-item p-2">
+            <a class="nav-link ms-3 me-3 btn btn-primary" href="/history"
+              >History</a
+            >
+          </li>
+
+          <li class="p-2 ml-5">
+            <b><i>Logged in as : </i>{{user.email}}</b>
+          </li>
+
+          <li class="nav-item ml-auto p-2">
+            <a class="nav-link ms-3 me-3 btn btn-warning" href="/logout"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    {%block body%} {% endblock %}
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <div><br /><br /><br /></div>
+    <div
+      class="ftr text-light bg-dark text-center fixed-bottom"
+      style="margin-top: 100px"
+    >
+      copyright &copy; 2020-21 SHREENIDHI SHIVARAJ BHARAT
+    </div>
+  </body>
+</html>

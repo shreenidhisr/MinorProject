@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {%block head%}
+<title>Symptoms</title>
+<style>
+  p {
+    display: inline;
+  }
+
+  h1 {
+    background: linear-gradient(gray, tomato);
+    height: 10vh;
+    text-align: center;
+    padding-top: 10px;
+  }
+</style>
+{%endblock%} {%block body%}
+
+<h1>Symptoms used for training</h1>
+
+<hr />
+<div class="container">
+  <div class="row">
+    {%for symp in symptoms%}
+    <div class="col-3">
+      {{loop.index}}.
+      <p>{{symp}}</p>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock%}

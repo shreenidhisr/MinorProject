@@ -1,0 +1,167 @@
+{%extends 'bse_login.html' %} {%block head%}
+<title>DISEASE PREDICTOR | HOME</title>
+
+{%endblock%} {%block body%}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center text-success bg-light border w-100">
+        Welcome <b>{{user.email}}</b> To disease predictor System
+      </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <form role="form" id="sym_form">
+        <!-- sym_form is the id -->
+        <div class="form-group" style="padding-top: 100px">
+          <label for="symptom_inp"> Enter Symptoms </label>
+          <input type="text" class="form-control" id="symptom_inp" />
+        </div>
+        <script>
+          $(function () {
+            $.ajax({
+              url: '{{ url_for("autocomplete") }}',
+            }).done(function (data) {
+              $("#symptom_inp").autocomplete({
+                source: data,
+                minLength: 2,
+              });
+            });
+          });
+        </script>
+
+        <input
+          type="Button"
+          class="btn btn-primary"
+          value="add"
+          onclick="add();"
+        />
+      </form>
+      <hr />
+      <input
+        type="Button"
+        class="btn btn-warning"
+        onClick="send_data();"
+        value="Predict"
+      />
+    </div>
+    <div class="col-md-4">
+      <img
+        alt="Bootstrap Image Preview"
+        src="{{url_for('static',filename='/images/bg1.webp')}}"
+        class="img-thumbnail"
+      />
+    </div>
+    <div class="col-md-4">
+      <ol id="top"></ol>
+    </div>
+  </div>
+</div>
+<!-- invisible form -->
+<form action="/predict" method="POST" id="invisible_form"></form>
+
+<script>
+  var added = [];
+  if (added.length == 0) {
+    $(".list").append("<h3> ENTERED SYMPTOMS APPEARS HERE </h3>");
+  }
+  function add() {
+    var firstname = $("#symptom_inp").val();
+    // alert(firstname);
+    if (firstname && !IN(firstname)) {
+      rm =
+        ' <input type="Button" class="btn btn-danger"  value="remove" id="' +
+        (add.Counter + "B") +
+        '" onClick="remove(' +
+        add.Counter +
+        ');"> ';
+      res =
+        '<div class="d-flex justify-content-between mb-3"><li id="' +
+        add.Counter +
+        '">' +
+        firstname +
+        "</li>" +
+        rm +
+        "</div>";
+      //   alert(res);
+      $("#top").append(res);
+      added.push(firstname);
+      add.Counter++;
+    }
+    console.log(added);
+  }
+  add.Counter = 0;
+
+  function IN(ele) {
+    for (var i = 0; i < added.length; i++) {
+      if (added[i] == ele) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function remove(element_id) {
+    alert(element_id);
+    txt = document.getElementById(element_id).innerHTML;
+    added = added.filter(function (item) {
+      return item !== txt;
+    });
+    console.log(element_id);
+    console.log(txt);
+
+    var element = document.getElementById(element_id);
+    element.parentNode.removeChild(element);
+
+    btn_id = element_id + "B";
+    var element = document.getElementById(btn_id);
+    console.log(btn_id + " " + element);
+    element.parentNode.removeChild(element);
+
+    console.log(added);
+  }
+
+  //sending the added[] to flask
+  function send_data() {
+    var input = document.createElement("input");
+
+    input.setAttribute("type", "hidden");
+
+    input.setAttribute("name", "length");
+
+    input.setAttribute("value", added.length);
+
+    //append to form element that you want .
+    document.getElementById("invisible_form").appendChild(input);
+
+    for (var i = 0; i <= added.length; i++) {
+      var input = document.createElement("input");
+
+      input.setAttribute("type", "hidden");
+
+      input.setAttribute("name", "symptom" + i);
+
+      input.setAttribute("value", added[i]);
+
+      //append to form element that you want .
+      document.getElementById("invisible_form").appendChild(input);
+    }
+    input.setAttribute("type", "submit");
+
+    input.setAttribute("name", "submit");
+
+    input.setAttribute("id", "submit_form");
+
+    input.setAttribute("value", "confirm");
+
+    //append to form element that you want .
+    document.getElementById("invisible_form").appendChild(input);
+
+    document.getElementById("submit_form").click();
+  }
+</script>
+
+{%endblock%}

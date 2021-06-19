@@ -1,0 +1,46 @@
+{%extends 'bse_login.html'%} {%block head%}
+<title>Result</title>
+{%endblock%} {%block body%}
+<!-- name:{{responce['user']['name']}}  -->
+<br />
+<!-- email : {{responce['user']['email']}} <br />
+password : {{responce['user']['password']}} <br />
+history :{{responce['user']['history']}}<br />
+RESULT : {{responce['result']}} -->
+
+<div class="jumbotron">
+  <h1 class="display-4">Hello, {{responce['user']['email']}}!</h1>
+  <p class="lead">
+    Based on symptoms entered our model predicted the following disease.
+  </p>
+  <hr class="my-4" />
+  <div class="alert alert-primary" role="alert">
+    <p class="h1">{{responce['result']}}.</p>
+  </div>
+
+  <p>
+    <a
+      class="btn btn-primary"
+      data-toggle="collapse"
+      href="#collapseExample"
+      role="button"
+      aria-expanded="false"
+      aria-controls="collapseExample"
+    >
+      Get more info
+    </a>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">{{responce['wiki'] | truncate(1000)}}</div>
+  </div>
+</div>
+
+<button class="btn btn-info d-block" onclick="goBack()">Go Back</button>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+{%endblock%}

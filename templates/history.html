@@ -1,0 +1,22 @@
+{%extends 'bse_login.html' %} {%block head%}
+<title>DISEASE PREDICTOR | History</title>
+
+{%endblock%} {%block body%}
+<!-- {{user['history']}} -->
+
+<table border="2">
+  <tr>
+    <th>Disease</th>
+    <th>Time</th>
+    <th>Symptoms</th>
+  </tr>
+  {%for history in user['history']%}
+  <tr>
+    <td>{{history[0]}}</td>
+    <td>{{history[1]}}</td>
+    <td>{{history[2]}}</td>
+  </tr>
+
+  {%endfor%}
+</table>
+{%endblock%}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {%block head%}
+<title>HOME</title>
+
+{%endblock%} {%block body%}
+<div class="container-fluid">
+    
+    
+    
+  <div class="row">
+    <div class="col-md-4">
+      <div class="jumbotron">
+        <h2>About Project</h2>
+        <p>
+          The main aim of this project is to ease the process of disease
+          prediction ,with the best accuracy .This project will surely help in
+          health industry and also to the people who cannot afford the regular
+          consultation price .This project will also help to doctors which
+          suggest them based on vast variety of diseases.
+        </p>
+
+        <p>
+          <br />
+          <h6><i>Refer base paper by clicking here</i>
+            </h6>
+          <a
+            class="btn btn-primary btn-large"
+            href="https://ieeexplore.ieee.org/document/8819782"
+            >IEEE PAPER</a
+          >
+        </p>
+      </div>
+    </div>
+    <!-- <div class="col-md-1"></div> -->
+    <div class="col-md-2">
+      <img
+        alt="Bootstrap Image Preview"
+        src="{{url_for('static',filename='/images/bg1.webp')}}"
+        class="rounded-circle"
+      />
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+      <div class="jumbotron">
+        <h4>Analytics</h4>
+        <img src="{{url_for('static',filename='/images/Screenshot_2.png')}}" alt="" width="100%" height="55%">
+        <p>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
